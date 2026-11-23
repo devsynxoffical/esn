@@ -153,16 +153,16 @@ export default async function Home() {
                 .filter(Boolean)
                 .slice(0, 3);
               return (
-                <div key={p.id} className="group flex overflow-hidden rounded-2xl border border-line bg-panel md:flex-col">
-                  <div className="w-[118px] shrink-0 overflow-hidden bg-side sm:w-[160px] md:w-full">
+                <div key={p.id} className="group flex overflow-hidden rounded-2xl border border-line bg-panel">
+                  <div className="m-2.5 aspect-square w-[104px] shrink-0 self-center overflow-hidden rounded-xl bg-[#0b0f14] sm:m-3 sm:w-[150px] md:w-[200px] lg:w-[220px]">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={p.image_url || "/products/earbuds.webp"}
                       alt={p.name}
-                      className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04] md:aspect-[2/1] md:h-auto"
+                      className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"
                     />
                   </div>
-                  <div className="flex min-w-0 flex-1 flex-col p-4 sm:p-6">
+                  <div className="flex min-w-0 flex-1 flex-col py-4 pl-1.5 pr-4 sm:py-5 sm:pl-2 sm:pr-5 lg:pr-6">
                     <div className="text-[11px] font-semibold uppercase tracking-[0.08em] text-acc">{p.category}</div>
                     <h3 className="mt-1 text-[16px] font-bold leading-snug tracking-[-0.01em] sm:text-[19px]">{p.name}</h3>
                     <ul className="mt-2 hidden space-y-1 text-[13px] text-mute sm:block">
