@@ -49,6 +49,24 @@ npm test                       # commission engine tests (uses TEST_DATABASE_URL
 Login at `/login` with `ADMIN_PHONE` / `ADMIN_PASSWORD` → you land on `/admin`. **Change the admin password** in
 Admin → Admins & Password.
 
+## Deploy on Vercel
+
+1. **Database**: in your Vercel project open **Storage → Create / Connect Database → Neon (Postgres)** and connect it
+   to the project. This adds `DATABASE_URL` automatically. (Any PostgreSQL works — paste its connection string with
+   `?sslmode=require` as `DATABASE_URL`.)
+2. **Environment variables** (Project → Settings → Environment Variables, for Production and Preview):
+   - `ADMIN_PHONE` — your admin login mobile, e.g. `03001234567`
+   - `ADMIN_PASSWORD` — a strong password (8+ characters)
+   - `CRON_SECRET` — a long random string (Vercel Cron sends it automatically)
+3. **Redeploy** (Deployments → ⋯ → Redeploy). On the first visit the app creates all tables, the default plans, ranks,
+   products, the admin login and the company top ID by itself — no commands to run.
+4. **Domain**: Project → Settings → Domains → add `elitesalesnetwork.com` and set the DNS records Vercel shows. SSL is
+   automatic.
+5. **Midnight closing** runs from `vercel.json` (Vercel Cron, 19:00 UTC = 12:00 AM Pakistan time). If a run is
+   missed, the next dashboard visit closes the day automatically.
+6. **Uploads**: Vercel has no permanent disk, so file uploads (product images, PDFs, logos) are disabled there — paste
+   image / PDF / YouTube links instead. For uploads, host on a VPS (below).
+
 ## Deploy on a VPS (Ubuntu) for elitesalesnetwork.com
 
 1. Install Node 20+, PostgreSQL, Nginx, Certbot.
@@ -87,7 +105,7 @@ Admin → Admins & Password.
 ## Project layout
 
 ```
-db/schema.sql            database schema
+src/lib/schema.ts        database schema (applied automatically on startup)
 src/lib/engine.ts        placement, pair matching, capping, closing, ranks
 src/lib/ops.ts           E-Pins, wallets, withdrawals, rewards, distributor orders, manager payroll
 src/lib/settings.ts      every editable system rule + defaults

@@ -12,10 +12,13 @@ const g = globalThis as unknown as { __esnPool?: Pool };
 export function pool(): Pool {
   if (!g.__esnPool) {
     const connectionString = process.env.DATABASE_URL;
-    if (!connectionString) throw new Error("DATABASE_URL is not set");
+    if (!connectionString)
+      throw new Error(
+        "DATABASE_URL is not set. Add a PostgreSQL connection string (e.g. from Neon) as the DATABASE_URL environment variable.",
+      );
     g.__esnPool = new Pool({
       connectionString,
-      max: Number(process.env.DB_POOL_MAX || 10),
+      max: Number(process.env.DB_POOL_MAX || 5),
       ssl: process.env.DATABASE_SSL === "true" ? { rejectUnauthorized: false } : undefined,
     });
   }

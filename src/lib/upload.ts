@@ -23,9 +23,14 @@ export async function saveUpload(file: FormDataEntryValue | null, allow: ("image
   if (!ext || !allow.includes(kind)) fail(`File type not allowed. Allowed: ${allow.join(", ")}.`);
   const max = kind === "video" ? 45 : kind === "pdf" ? 25 : 5;
   if (file.size > max * 1024 * 1024) fail(`File too large (max ${max} MB).`);
-  await mkdir(UPLOAD_DIR, { recursive: true });
   const name = `${Date.now().toString(36)}-${randomBytes(6).toString("hex")}.${ext}`;
-  await writeFile(join(UPLOAD_DIR, name), Buffer.from(await file.arrayBuffer()));
+  try {
+    await mkdir(UPLOAD_DIR, { recursive: true });
+    await writeFile(join(UPLOAD_DIR, name), Buffer.from(await file.arrayBuffer()));
+  } catch (e) {
+    console.error("upload failed", e);
+    fail("File upload is not available on this hosting. Paste a link (URL) to the image / PDF / video instead.");
+  }
   return `/uploads/${name}`;
 }
 

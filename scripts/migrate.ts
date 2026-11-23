@@ -1,10 +1,8 @@
-import { readFileSync } from "node:fs";
-import { join } from "node:path";
 import { pool } from "../src/lib/db";
+import { SCHEMA_SQL } from "../src/lib/schema";
 
 async function main() {
-  const sql = readFileSync(join(__dirname, "..", "db", "schema.sql"), "utf8");
-  await pool().query(sql);
+  await pool().query(SCHEMA_SQL);
   console.log("Schema up to date.");
   await pool().end();
 }

@@ -2,8 +2,14 @@ import Link from "next/link";
 import { currentUser } from "@/lib/auth";
 import { getSettings } from "@/lib/settings";
 import { Logo } from "@/components/ui";
+import { connection } from "next/server";
+import { setupProblem } from "@/lib/bootstrap";
+import SetupNotice from "@/components/SetupNotice";
 
 export default async function StoreLayout({ children }: { children: React.ReactNode }) {
+  await connection(); // always render at request time (never touch the DB during build)
+  const problem = await setupProblem();
+  if (problem) return <SetupNotice message={problem} />;
   const [u, s] = await Promise.all([currentUser(), getSettings()]);
   return (
     <div className="flex min-h-screen flex-col">

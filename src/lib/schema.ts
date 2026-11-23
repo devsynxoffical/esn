@@ -1,3 +1,5 @@
+// Database schema (idempotent). Applied automatically on startup and by `npm run db:migrate`.
+export const SCHEMA_SQL = `
 -- ESN (Elite Sales Network) database schema. Idempotent: safe to run many times.
 
 CREATE TABLE IF NOT EXISTS settings (
@@ -322,3 +324,4 @@ CREATE TABLE IF NOT EXISTS audit_logs (
 
 CREATE SEQUENCE IF NOT EXISTS member_code_seq START 10001;
 CREATE SEQUENCE IF NOT EXISTS invoice_seq START 1;
+`;

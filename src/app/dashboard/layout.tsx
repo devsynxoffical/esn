@@ -1,4 +1,7 @@
 import Link from "next/link";
+import { connection } from "next/server";
+import { setupProblem } from "@/lib/bootstrap";
+import SetupNotice from "@/components/SetupNotice";
 import Shell, { type NavGroup } from "@/components/Shell";
 import { requireMember } from "@/lib/auth";
 import { getSettings } from "@/lib/settings";
@@ -9,6 +12,9 @@ import { maybeRunClosings } from "@/lib/closing-lazy";
 import { logoutAction } from "@/app/actions/public";
 
 export default async function MemberLayout({ children }: { children: React.ReactNode }) {
+  await connection(); // always render at request time (never touch the DB during build)
+  const problem = await setupProblem();
+  if (problem) return <SetupNotice message={problem} />;
   const me = await requireMember();
   await maybeRunClosings();
   const s = await getSettings();

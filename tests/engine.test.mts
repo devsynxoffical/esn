@@ -4,20 +4,19 @@
  */
 import { test, before, after } from "node:test";
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
-import { join } from "node:path";
 
 process.env.DATABASE_URL = process.env.TEST_DATABASE_URL || "postgres://esn:esn@localhost:5432/esn_test";
 
 const { pool, tx, one, q } = await import("../src/lib/db");
 const { activate, closeDay, todayIn } = await import("../src/lib/engine");
 const { seedDefaults } = await import("../src/lib/seed");
+const { SCHEMA_SQL } = await import("../src/lib/schema");
 const { saveSetting } = await import("../src/lib/settings");
 const { requestWithdrawal, processWithdrawal } = await import("../src/lib/ops");
 
 async function reset() {
   await pool().query("DROP SCHEMA public CASCADE; CREATE SCHEMA public;");
-  await pool().query(readFileSync(join(import.meta.dirname, "..", "db", "schema.sql"), "utf8"));
+  await pool().query(SCHEMA_SQL);
   await tx((c) => seedDefaults(c, { adminPhone: "03000000000", adminPassword: "x", withCompanyRoot: true }));
 }
 

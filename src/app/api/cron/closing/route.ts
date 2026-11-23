@@ -1,5 +1,6 @@
 import { tx } from "@/lib/db";
 import { runDueClosings } from "@/lib/engine";
+import { ensureReady } from "@/lib/bootstrap";
 
 /**
  * Midnight closing endpoint for an external scheduler (cron-job.org, server crontab, Vercel Cron).
@@ -9,6 +10,7 @@ async function run(req: Request) {
   const secret = process.env.CRON_SECRET;
   const auth = req.headers.get("authorization") || "";
   if (!secret || auth !== `Bearer ${secret}`) return Response.json({ error: "unauthorized" }, { status: 401 });
+  await ensureReady();
   const results = await runDueClosings(tx);
   return Response.json({ ok: true, closed: results });
 }

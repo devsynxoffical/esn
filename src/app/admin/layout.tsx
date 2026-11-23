@@ -1,4 +1,7 @@
 import Link from "next/link";
+import { connection } from "next/server";
+import { setupProblem } from "@/lib/bootstrap";
+import SetupNotice from "@/components/SetupNotice";
 import Shell, { type NavGroup } from "@/components/Shell";
 import { requireAdmin } from "@/lib/auth";
 import { getSettings } from "@/lib/settings";
@@ -7,6 +10,9 @@ import { maybeRunClosings } from "@/lib/closing-lazy";
 import { logoutAction } from "@/app/actions/public";
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
+  await connection(); // always render at request time (never touch the DB during build)
+  const problem = await setupProblem();
+  if (problem) return <SetupNotice message={problem} />;
   const admin = await requireAdmin();
   await maybeRunClosings();
   const s = await getSettings();
