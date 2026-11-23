@@ -52,7 +52,7 @@ export default async function Ranks({ searchParams }: { searchParams: Promise<{ 
                 <span className="text-xs font-bold uppercase text-mute">Rank {r.level}</span>
                 {a ? <Badge>{a.status}</Badge> : r.level === rp.next?.level ? <Badge tone="warn">Next</Badge> : null}
               </div>
-              <div className="mt-1 text-lg font-extrabold">{r.name}</div>
+              <div className="mt-1 text-lg font-semibold">{r.name}</div>
               <div className="text-sm text-acc">
                 {num(r.pairs_required)} : {num(r.pairs_required)} pairs
               </div>

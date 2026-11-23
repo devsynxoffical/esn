@@ -25,6 +25,12 @@ async function setup() {
   await tx(async (c) => {
     await c.query("SELECT pg_advisory_xact_lock(7700)");
     await c.query(SCHEMA_SQL);
+    // one-time image upgrade for databases created before the real product photos
+    await c.query(
+      `UPDATE products SET image_url = CASE image_url WHEN '/products/handsfree.svg' THEN '/products/earbuds.webp'
+         WHEN '/products/watch.svg' THEN '/products/watch.webp' END
+       WHERE image_url IN ('/products/handsfree.svg', '/products/watch.svg')`,
+    );
     const admin = await one("SELECT id FROM users WHERE role = 'admin' LIMIT 1", [], c);
     if (admin) return;
     const adminPhone = process.env.ADMIN_PHONE ? normPhone(process.env.ADMIN_PHONE) : "";

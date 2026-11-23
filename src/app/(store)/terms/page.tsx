@@ -6,7 +6,7 @@ export default async function Terms() {
   const s = await getSettings();
   return (
     <div className="mx-auto max-w-3xl space-y-4 px-4 py-12 text-sm leading-relaxed text-fg/90">
-      <h1 className="text-2xl font-black">Terms & Policy</h1>
+      <h1 className="text-2xl font-bold">Terms & Policy</h1>
       <p>
         {s.site_name} sells physical products (Handsfree, Watches and partner products). Each starter package is a product
         sale; a product sale receipt is issued on every activation.

@@ -35,15 +35,15 @@ export default async function ProductPage({
       <div className="mt-4 grid gap-8 md:grid-cols-2">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={p.image_url || "/products/handsfree.svg"}
+          src={p.image_url || "/products/earbuds.webp"}
           alt={p.name}
           className="aspect-square w-full rounded-2xl border border-line object-cover"
         />
         <div>
           <Flash sp={sp} />
           <div className="text-xs font-bold uppercase tracking-wide text-mute">{p.brand_name || p.category}</div>
-          <h1 className="mt-1 text-3xl font-black">{p.name}</h1>
-          <div className="mt-3 text-3xl font-black text-acc">{money(p.price, s.currency)}</div>
+          <h1 className="mt-1 text-3xl font-bold">{p.name}</h1>
+          <div className="mt-3 text-3xl font-bold text-acc">{money(p.price, s.currency)}</div>
           <p className="mt-4 text-mute">{p.description}</p>
           {specs.length > 0 && (
             <div className="mt-6 rounded-2xl border border-line bg-panel p-5">

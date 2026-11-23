@@ -101,7 +101,7 @@ export default async function Withdrawals({
                     </td>
                     <td>{money(w.amount, cur)}</td>
                     <td className="text-ok">{money(w.fee, cur)}</td>
-                    <td className="font-black">{money(w.net, cur)}</td>
+                    <td className="font-bold">{money(w.net, cur)}</td>
                     <td className="whitespace-nowrap text-xs text-mute">{dt(w.created_at)}</td>
                     <td>
                       <Badge>{w.status}</Badge>

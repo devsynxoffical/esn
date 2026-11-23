@@ -602,3 +602,51 @@ export async function removeAdminAction(fd: FormData) {
     return "Admin access removed.";
   });
 }
+
+// ---------------------------------------------------------------- dashboard quick rules (commission engine panel)
+export async function quickRulesAction(fd: FormData) {
+  const admin = await requireAdmin();
+  await handle("/admin", async () => {
+    const planId = numv(fd, "plan_id");
+    const plan = await one("SELECT * FROM plans WHERE id = $1", [planId]);
+    if (!plan) fail("Plan not found.");
+    const vals = {
+      direct_pair_bonus: posNum(fd, "direct_pair_bonus", "Direct pair bonus"),
+      indirect_pair_bonus: posNum(fd, "indirect_pair_bonus", "Indirect pair bonus"),
+      direct_referral_bonus: posNum(fd, "direct_referral_bonus", "Direct referral bonus"),
+      daily_cap_pairs: Math.floor(posNum(fd, "daily_cap_pairs", "Daily cap pairs")),
+      daily_cap_amount: posNum(fd, "daily_cap_amount", "Daily cap amount"),
+    };
+    await q(
+      `UPDATE plans SET direct_pair_bonus=$2, indirect_pair_bonus=$3, direct_referral_bonus=$4, daily_cap_pairs=$5, daily_cap_amount=$6 WHERE id=$1`,
+      [planId, vals.direct_pair_bonus, vals.indirect_pair_bonus, vals.direct_referral_bonus, vals.daily_cap_pairs, vals.daily_cap_amount],
+    );
+    await saveSetting("withdrawal_fee_percent", posNum(fd, "withdrawal_fee_percent", "Withdrawal fee"));
+    await saveSetting("withdrawal_min", posNum(fd, "withdrawal_min", "Minimum withdrawal"));
+    await saveSetting("first_pair_requires_direct", bool(fd, "first_pair_requires_direct"));
+    await saveSetting("normalization_enabled", bool(fd, "normalization_enabled"));
+    await saveSetting("carry_forward_days", bool(fd, "carry_forever") ? 0 : Math.max(1, Math.floor(numv(fd, "carry_days") || 30)));
+    await audit(pool(), admin.id, "rules.quick_update", { plan: plan!.code, before: plan, after: vals });
+    return `Commission rules saved for ${plan!.name}. New pairs use the new values.`;
+  });
+}
+
+// ---------------------------------------------------------------- testing tools
+export async function generateDemoAction(fd: FormData) {
+  const admin = await requireAdmin();
+  await handle("/admin/tools", async () => {
+    const { generateDemo } = await import("@/lib/demo");
+    const r = await generateDemo(admin.id, Math.floor(numv(fd, "count") || 60));
+    return `Demo data created: ${r.members} members (${r.activeMembers} active) with pairs, closings, withdrawals, orders and E-Pins.`;
+  });
+}
+
+export async function resetDataAction(fd: FormData) {
+  const admin = await requireAdmin();
+  await handle("/admin/tools", async () => {
+    if (str(fd, "confirm") !== "RESET") fail('Type RESET in capital letters to confirm.');
+    const { resetMemberData } = await import("@/lib/demo");
+    await resetMemberData(admin.id);
+    return "All members, wallets, pairs, E-Pins, orders and withdrawals were deleted. Settings, plans, ranks and products were kept.";
+  });
+}

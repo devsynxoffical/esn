@@ -8,7 +8,7 @@ export default async function Login({ searchParams }: { searchParams: Promise<{ 
   const sp = await searchParams;
   return (
     <div className="mx-auto max-w-md px-4 py-14">
-      <h1 className="text-2xl font-black">Login</h1>
+      <h1 className="text-2xl font-bold">Login</h1>
       <p className="mt-1 text-sm text-mute">Members and admins log in here.</p>
       <div className="mt-5">
         <Flash sp={sp} />

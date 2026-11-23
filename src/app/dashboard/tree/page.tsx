@@ -61,21 +61,21 @@ export default async function Tree({ searchParams }: { searchParams: Promise<{ r
         <div className="mb-4 grid grid-cols-2 gap-3 text-sm sm:grid-cols-4">
           <div className="rounded-lg bg-panel2 p-3">
             <div className="text-mute">Left team</div>
-            <div className="text-lg font-black">{root.left_count}</div>
+            <div className="text-lg font-bold">{root.left_count}</div>
           </div>
           <div className="rounded-lg bg-panel2 p-3">
             <div className="text-mute">Right team</div>
-            <div className="text-lg font-black">{root.right_count}</div>
+            <div className="text-lg font-bold">{root.right_count}</div>
           </div>
           <div className="rounded-lg bg-panel2 p-3">
             <div className="text-mute">Carry L / R</div>
-            <div className="text-lg font-black">
+            <div className="text-lg font-bold">
               {root.left_carry} / {root.right_carry}
             </div>
           </div>
           <div className="rounded-lg bg-panel2 p-3">
             <div className="text-mute">Matched pairs</div>
-            <div className="text-lg font-black">{root.total_pairs}</div>
+            <div className="text-lg font-bold">{root.total_pairs}</div>
           </div>
         </div>
         <TreeView nodes={nodes} rootId={rootId} hrefFor={href} />

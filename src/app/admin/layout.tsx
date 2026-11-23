@@ -27,67 +27,66 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     {
       title: "Overview",
       items: [
-        { href: "/admin", label: "Finance Dashboard" },
-        { href: "/admin/closings", label: "Daily Closing" },
-        { href: "/admin/ledger", label: "Company Ledger" },
+        { href: "/admin", label: "Dashboard", icon: "dashboard" },
+        { href: "/admin/closings", label: "Daily Closing", icon: "clock" },
+        { href: "/admin/ledger", label: "Company Ledger", icon: "ledger" },
       ],
     },
     {
       title: "Members",
       items: [
-        { href: "/admin/members", label: "All Members", badge: c?.inactive },
-        { href: "/admin/members/new", label: "Add Member / Top IDs" },
-        { href: "/admin/tree", label: "Tree Viewer" },
+        { href: "/admin/members", label: "All Members", icon: "team", badge: c?.inactive },
+        { href: "/admin/members/new", label: "Add Member / Top IDs", icon: "add" },
+        { href: "/admin/tree", label: "Tree Manager", icon: "tree" },
       ],
     },
     {
       title: "Finance",
       items: [
-        { href: "/admin/epins", label: "E-Pins & Funds" },
-        { href: "/admin/withdrawals", label: "Withdrawals", badge: c?.wd },
-        { href: "/admin/orders", label: "Orders & Dispatch", badge: c?.orders },
-        { href: "/admin/invoices", label: "Invoices" },
-        { href: "/admin/rewards", label: "Rank Rewards", badge: c?.gifts },
+        { href: "/admin/withdrawals", label: "Payout Requests", icon: "withdraw", badge: c?.wd },
+        { href: "/admin/epins", label: "E-Pins & Funds", icon: "epin" },
+        { href: "/admin/orders", label: "Orders & Dispatch", icon: "truck", badge: c?.orders },
+        { href: "/admin/invoices", label: "Invoices", icon: "invoice" },
+        { href: "/admin/rewards", label: "Rank Rewards", icon: "gift", badge: c?.gifts },
       ],
     },
     {
-      title: "Plan Setup",
+      title: "Plan",
       items: [
-        { href: "/admin/settings", label: "Master Settings" },
-        { href: "/admin/plans", label: "Plans & Commissions" },
-        { href: "/admin/ranks", label: "Ranks & Rewards" },
-        { href: "/admin/products", label: "Products & Store", badge: c?.vendor },
-        { href: "/admin/managers", label: "Managers Payroll" },
+        { href: "/admin/plans", label: "Plans & Commission", icon: "layers" },
+        { href: "/admin/ranks", label: "Rank Rules", icon: "award" },
+        { href: "/admin/products", label: "Products & Store", icon: "bag", badge: c?.vendor },
+        { href: "/admin/managers", label: "Managers Payroll", icon: "bank" },
       ],
     },
     {
-      title: "Content & System",
+      title: "System",
       items: [
-        { href: "/admin/training", label: "Training Academy" },
-        { href: "/admin/announcements", label: "Announcements" },
-        { href: "/admin/admins", label: "Admins & Password" },
-        { href: "/admin/audit", label: "Audit Log" },
+        { href: "/admin/settings", label: "Master Settings", icon: "settings" },
+        { href: "/admin/training", label: "Training Center", icon: "training" },
+        { href: "/admin/announcements", label: "Announcements", icon: "megaphone" },
+        { href: "/admin/admins", label: "Admins & Password", icon: "shield" },
+        { href: "/admin/audit", label: "Audit Logs", icon: "log" },
+        { href: "/admin/tools", label: "Testing Tools", icon: "chart" },
       ],
     },
   ];
+  const alerts = (c?.wd ?? 0) + (c?.orders ?? 0) + (c?.vendor ?? 0) + (c?.gifts ?? 0);
 
   return (
     <Shell
       brand={`${s.site_short} Admin`}
-      short={s.site_short}
       groups={groups}
       userName={admin.name}
-      userSub="Super Admin"
+      userSub="Full access"
       logout={logoutAction}
-      topRight={
-        <>
-          <Link href="/admin/epins" className="btn btn-acc">
-            + E-Pins
-          </Link>
-          <Link href="/" className="btn btn-ghost hidden sm:inline-flex">
-            View store
-          </Link>
-        </>
+      search={{ action: "/admin/members", name: "q", placeholder: "Search members, IDs, mobile, CNIC…" }}
+      bell={{ href: "/admin/withdrawals", count: alerts }}
+      cta={{ href: "/admin/epins", label: "+ Create E-Pin" }}
+      topExtra={
+        <Link href="/" className="btn btn-ghost hidden md:inline-flex">
+          View store
+        </Link>
       }
     >
       {children}

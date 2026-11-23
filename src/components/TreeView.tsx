@@ -30,7 +30,7 @@ export default function TreeView({ nodes, rootId, hrefFor }: { nodes: Row[]; roo
                     title={`${n.name} (${n.code})`}
                   >
                     <span
-                      className={`grid h-9 w-9 place-items-center rounded-full border-2 text-xs font-black ${
+                      className={`grid h-9 w-9 place-items-center rounded-full border-2 text-xs font-bold ${
                         d === 0
                           ? "border-white/80"
                           : n.position === "L"

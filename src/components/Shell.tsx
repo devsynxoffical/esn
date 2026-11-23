@@ -3,25 +3,102 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import {
+  LayoutDashboard,
+  User,
+  Network,
+  Users,
+  Trophy,
+  Wallet,
+  Ticket,
+  ArrowUpRight,
+  Package,
+  GraduationCap,
+  Store,
+  Briefcase,
+  BadgeCheck,
+  BarChart3,
+  Clock,
+  BookOpen,
+  UserPlus,
+  GitFork,
+  CreditCard,
+  Truck,
+  FileText,
+  Gift,
+  Settings,
+  Layers,
+  Award,
+  ShoppingBag,
+  Landmark,
+  Megaphone,
+  ShieldCheck,
+  ScrollText,
+  Search,
+  Bell,
+  Menu,
+  LogOut,
+  X,
+  type LucideIcon,
+} from "lucide-react";
+import { LogoMark } from "./ui";
 
-export type NavGroup = { title: string; items: { href: string; label: string; badge?: number }[] };
+const ICONS: Record<string, LucideIcon> = {
+  dashboard: LayoutDashboard,
+  user: User,
+  tree: Network,
+  team: Users,
+  rank: Trophy,
+  wallet: Wallet,
+  epin: Ticket,
+  withdraw: ArrowUpRight,
+  orders: Package,
+  training: GraduationCap,
+  store: Store,
+  manager: Briefcase,
+  activate: BadgeCheck,
+  chart: BarChart3,
+  clock: Clock,
+  ledger: BookOpen,
+  add: UserPlus,
+  fork: GitFork,
+  card: CreditCard,
+  truck: Truck,
+  invoice: FileText,
+  gift: Gift,
+  settings: Settings,
+  layers: Layers,
+  award: Award,
+  bag: ShoppingBag,
+  bank: Landmark,
+  megaphone: Megaphone,
+  shield: ShieldCheck,
+  log: ScrollText,
+};
+
+export type NavItem = { href: string; label: string; icon: string; badge?: number };
+export type NavGroup = { title: string; items: NavItem[] };
 
 export default function Shell({
   brand,
-  short,
   groups,
   userName,
   userSub,
-  topRight,
+  search,
+  topExtra,
+  cta,
+  bell,
   logout,
   children,
 }: {
   brand: string;
-  short: string;
   groups: NavGroup[];
   userName: string;
   userSub: string;
-  topRight?: React.ReactNode;
+  search: { action: string; name: string; placeholder: string };
+  topExtra?: React.ReactNode;
+  cta?: { href: string; label: string };
+  bell?: { href: string; count: number };
   logout: () => Promise<void>;
   children: React.ReactNode;
 }) {
@@ -31,72 +108,110 @@ export default function Shell({
     href === "/dashboard" || href === "/admin" ? path === href : path === href || path.startsWith(href + "/");
 
   const nav = (
-    <nav className="flex h-full flex-col overflow-y-auto px-3 pb-6">
-      <Link href="/" className="flex items-center gap-2.5 px-2 py-5" onClick={() => setOpen(false)}>
-        <span className="grad grid h-9 w-9 shrink-0 place-items-center rounded-xl text-[11px] font-black tracking-tight text-white">{short.slice(0, 3)}</span>
-        <span className="text-base font-extrabold">{brand}</span>
-      </Link>
-      {groups.map((g) => (
-        <div key={g.title} className="mb-3">
-          <div className="px-2 pb-1.5 pt-2 text-[10.5px] font-bold uppercase tracking-wider text-mute">{g.title}</div>
-          {g.items.map((it) => (
-            <Link
-              key={it.href}
-              href={it.href}
-              onClick={() => setOpen(false)}
-              className={`mb-0.5 flex items-center justify-between rounded-lg px-3 py-2 text-[13.5px] font-medium transition ${
-                isActive(it.href) ? "grad text-white" : "text-fg/85 hover:bg-panel2"
-              }`}
-            >
-              {it.label}
-              {!!it.badge && (
-                <span className="rounded-full bg-bad px-1.5 text-[10px] font-bold leading-4 text-white">{it.badge}</span>
-              )}
-            </Link>
-          ))}
-        </div>
-      ))}
-      <form action={logout} className="mt-auto px-2 pt-4">
-        <button className="btn btn-ghost w-full">Log out</button>
+    <nav className="flex h-full flex-col">
+      <div className="flex h-16 shrink-0 items-center justify-between px-5">
+        <Link href="/" className="flex items-center gap-2.5" onClick={() => setOpen(false)}>
+          <LogoMark size={34} />
+          <span className="text-[17px] font-bold tracking-[-0.02em]">{brand}</span>
+        </Link>
+        <button aria-label="Close menu" className="text-mute lg:hidden" onClick={() => setOpen(false)}>
+          <X size={20} />
+        </button>
+      </div>
+      <div className="flex-1 overflow-y-auto px-3 pb-4">
+        {groups.map((g) => (
+          <div key={g.title} className="mt-4 first:mt-2">
+            <div className="px-3 pb-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-mute/80">{g.title}</div>
+            {g.items.map((it) => {
+              const Icon = ICONS[it.icon] ?? LayoutDashboard;
+              const active = isActive(it.href);
+              return (
+                <Link
+                  key={it.href}
+                  href={it.href}
+                  onClick={() => setOpen(false)}
+                  className={`mb-0.5 flex h-9 items-center gap-3 rounded-lg px-3 text-[13.5px] font-medium transition ${
+                    active ? "grad text-white shadow-[0_6px_20px_-10px_rgba(249,115,22,0.8)]" : "text-fg/80 hover:bg-white/[0.04] hover:text-fg"
+                  }`}
+                >
+                  <Icon size={16} strokeWidth={2} className={active ? "text-white" : "text-mute"} />
+                  <span className="flex-1 truncate">{it.label}</span>
+                  {!!it.badge && (
+                    <span className="num min-w-5 rounded-full bg-bad px-1.5 text-center text-[10.5px] font-bold leading-5 text-white">
+                      {it.badge > 99 ? "99+" : it.badge}
+                    </span>
+                  )}
+                </Link>
+              );
+            })}
+          </div>
+        ))}
+      </div>
+      <form action={logout} className="border-t border-line p-3">
+        <button className="flex h-9 w-full items-center gap-3 rounded-lg px-3 text-[13.5px] font-medium text-mute hover:bg-white/[0.04] hover:text-fg">
+          <LogOut size={16} /> Log out
+        </button>
       </form>
     </nav>
   );
 
   return (
-    <div className="min-h-screen overflow-x-clip lg:pl-[232px]">
-      <aside className="fixed inset-y-0 left-0 z-30 hidden w-[232px] border-r border-line bg-side lg:block">{nav}</aside>
-
+    <div className="min-h-screen overflow-x-clip lg:pl-[240px]">
+      <aside className="fixed inset-y-0 left-0 z-30 hidden w-[240px] border-r border-line bg-side lg:block">{nav}</aside>
       {open && (
-        <div className="fixed inset-0 z-40 lg:hidden">
-          <button aria-label="Close menu" className="absolute inset-0 bg-black/60" onClick={() => setOpen(false)} />
-          <aside className="absolute inset-y-0 left-0 w-[260px] border-r border-line bg-side">{nav}</aside>
+        <div className="fixed inset-0 z-50 lg:hidden">
+          <button aria-label="Close menu" className="absolute inset-0 bg-black/70" onClick={() => setOpen(false)} />
+          <aside className="absolute inset-y-0 left-0 w-[264px] border-r border-line bg-side">{nav}</aside>
         </div>
       )}
 
-      <header className="sticky top-0 z-20 flex h-14 items-center gap-3 border-b border-line bg-bg/90 px-4 backdrop-blur sm:px-6">
-        <button
-          aria-label="Open menu"
-          className="grid h-9 w-9 place-items-center rounded-lg border border-line lg:hidden"
-          onClick={() => setOpen(true)}
-        >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M3 6h18M3 12h18M3 18h18" />
-          </svg>
-        </button>
-        <div className="flex flex-1 items-center justify-end gap-3">
-          {topRight}
-          <div className="flex items-center gap-2.5">
-            <span className="grad grid h-9 w-9 place-items-center rounded-full text-xs font-black text-white">
-              {userName.slice(0, 1).toUpperCase()}
-            </span>
-            <div className="hidden leading-tight sm:block">
-              <div className="text-sm font-bold">{userName}</div>
-              <div className="text-[11px] text-mute">{userSub}</div>
+      <header className="sticky top-0 z-20 border-b border-line bg-bg/85 backdrop-blur-md">
+        <div className="mx-auto flex h-16 max-w-[1520px] items-center gap-3 px-4 sm:px-6">
+          <button
+            aria-label="Open menu"
+            className="grid h-10 w-10 shrink-0 place-items-center rounded-[10px] border border-line text-mute lg:hidden"
+            onClick={() => setOpen(true)}
+          >
+            <Menu size={18} />
+          </button>
+          <form action={search.action} className="relative hidden max-w-[460px] flex-1 md:block">
+            <Search size={16} className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-mute" />
+            <input name={search.name} placeholder={search.placeholder} className="inp h-10 pl-10" />
+          </form>
+          <div className="ml-auto flex items-center gap-2 sm:gap-3">
+            {topExtra}
+            {bell && (
+              <Link
+                href={bell.href}
+                aria-label="Notifications"
+                className="relative grid h-10 w-10 place-items-center rounded-[10px] border border-line bg-panel text-mute hover:text-fg"
+              >
+                <Bell size={17} />
+                {bell.count > 0 && (
+                  <span className="num absolute -right-1.5 -top-1.5 min-w-[18px] rounded-full bg-bad px-1 text-center text-[10px] font-bold leading-[18px] text-white">
+                    {bell.count > 99 ? "99+" : bell.count}
+                  </span>
+                )}
+              </Link>
+            )}
+            {cta && (
+              <Link href={cta.href} className="btn btn-acc hidden sm:inline-flex">
+                {cta.label}
+              </Link>
+            )}
+            <div className="flex items-center gap-2.5 pl-1">
+              <span className="grad grid h-9 w-9 shrink-0 place-items-center rounded-full text-[13px] font-bold text-white">
+                {userName.slice(0, 1).toUpperCase()}
+              </span>
+              <div className="hidden leading-tight xl:block">
+                <div className="max-w-[160px] truncate text-[13.5px] font-semibold">{userName}</div>
+                <div className="max-w-[180px] truncate text-[11.5px] text-mute">{userSub}</div>
+              </div>
             </div>
           </div>
         </div>
       </header>
-      <main className="mx-auto min-w-0 max-w-[1400px] px-4 py-5 sm:px-6 sm:py-6">{children}</main>
+      <main className="mx-auto max-w-[1520px] px-4 py-6 sm:px-6">{children}</main>
     </div>
   );
 }

@@ -24,14 +24,14 @@ export default async function Invoice({ params }: { params: Promise<{ number: st
       <div className="mx-auto max-w-2xl rounded-xl border border-neutral-200 p-8 print:border-0">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <div className="text-2xl font-black text-orange-600">{s.site_name}</div>
+            <div className="text-2xl font-bold text-orange-600">{s.site_name}</div>
             <div className="mt-1 whitespace-pre-line text-sm text-neutral-600">{s.office_address}</div>
             <div className="text-sm text-neutral-600">
               {s.support_phone} · {s.site_domain}
             </div>
           </div>
           <div className="text-right">
-            <div className="text-xl font-black">SALES RECEIPT</div>
+            <div className="text-xl font-bold">SALES RECEIPT</div>
             <div className="text-sm">{inv.number}</div>
             <div className="text-sm text-neutral-600">{dt(inv.created_at)}</div>
           </div>
@@ -79,7 +79,7 @@ export default async function Invoice({ params }: { params: Promise<{ number: st
               <td colSpan={2} className="py-3 text-right font-bold">
                 Total paid
               </td>
-              <td className="py-3 text-right text-lg font-black">{money(inv.amount, s.currency)}</td>
+              <td className="py-3 text-right text-lg font-bold">{money(inv.amount, s.currency)}</td>
             </tr>
           </tfoot>
         </table>

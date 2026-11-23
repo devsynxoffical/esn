@@ -38,7 +38,7 @@ export default async function Training() {
                     rel="noreferrer"
                     className="flex gap-3 rounded-xl border border-line bg-panel2 p-3 hover:border-acc"
                   >
-                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-bad/15 text-xs font-black text-bad">PDF</span>
+                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-bad/15 text-xs font-bold text-bad">PDF</span>
                     <span>
                       <span className="block text-sm font-bold">{p.title}</span>
                       <span className="block text-xs text-mute">{p.category}</span>

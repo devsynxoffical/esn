@@ -33,7 +33,7 @@ function ProductForm({ p }: { p?: Row }) {
       </label>
       <label className="block sm:col-span-2">
         <span className="lbl">Image URL</span>
-        <input className="inp" name="image_url" defaultValue={p?.image_url ?? ""} placeholder="/products/watch.svg or https://..." />
+        <input className="inp" name="image_url" defaultValue={p?.image_url ?? ""} placeholder="/products/watch.webp or https://..." />
       </label>
       <label className="block">
         <span className="lbl">…or upload image</span>
@@ -111,7 +111,7 @@ export default async function Products({
                   <tr key={p.id}>
                     <td>
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={p.image_url || "/products/handsfree.svg"} alt="" className="h-10 w-10 rounded object-cover" />
+                      <img src={p.image_url || "/products/earbuds.webp"} alt="" className="h-10 w-10 rounded object-cover" />
                     </td>
                     <td className="font-semibold">{p.name}</td>
                     <td>{p.category}</td>

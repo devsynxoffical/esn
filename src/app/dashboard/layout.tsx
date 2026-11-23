@@ -20,66 +20,70 @@ export default async function MemberLayout({ children }: { children: React.React
   const s = await getSettings();
   const flags = await one(
     `SELECT ${distributorWhere} AS dist, (${managerWhere}) AS mgr,
-       (SELECT count(*)::int FROM rank_achievements WHERE user_id = u.id AND status = 'choose') AS rewards
+       (SELECT count(*)::int FROM rank_achievements WHERE user_id = u.id AND status = 'choose') AS rewards,
+       (SELECT count(*)::int FROM users x WHERE x.sponsor_id = u.id AND x.status = 'inactive') AS waiting,
+       (SELECT count(*)::int FROM announcements WHERE active AND created_at > now() - interval '7 days') AS news
      FROM users u LEFT JOIN plans p ON p.id = u.plan_id WHERE u.id = $1`,
     [me.id],
   );
   const active = me.status === "active";
+  const rank = active
+    ? await one<{ name: string }>("SELECT name FROM ranks WHERE level <= $1 AND active ORDER BY level DESC LIMIT 1", [me.rank_level])
+    : null;
 
   const groups: NavGroup[] = [
     {
       title: "Main",
       items: [
-        { href: "/dashboard", label: "Dashboard" },
-        ...(!active ? [{ href: "/dashboard/activate", label: "Activate ID", badge: 1 }] : []),
-        { href: "/dashboard/profile", label: "My Profile" },
+        { href: "/dashboard", label: "Dashboard", icon: "dashboard" },
+        ...(!active ? [{ href: "/dashboard/activate", label: "Activate ID", icon: "activate", badge: 1 }] : []),
+        { href: "/dashboard/profile", label: "My Profile", icon: "user" },
       ],
     },
     {
       title: "Network",
       items: [
-        { href: "/dashboard/tree", label: "Binary Tree" },
-        { href: "/dashboard/team", label: "My Team & Referrals" },
-        { href: "/dashboard/ranks", label: "Rank Rewards", badge: flags?.rewards || 0 },
+        { href: "/dashboard/tree", label: "Binary Tree", icon: "tree" },
+        { href: "/dashboard/team", label: "Direct Referrals", icon: "team", badge: flags?.waiting },
+        { href: "/dashboard/ranks", label: "Rank Rewards", icon: "rank", badge: flags?.rewards },
       ],
     },
     {
       title: "Wallet",
       items: [
-        { href: "/dashboard/wallet", label: "Wallets & Income" },
-        { href: "/dashboard/epins", label: "E-Pins" },
-        { href: "/dashboard/withdraw", label: "Withdraw" },
-        { href: "/dashboard/orders", label: "Orders & Invoices" },
+        { href: "/dashboard/wallet", label: "Wallet & Earnings", icon: "wallet" },
+        { href: "/dashboard/withdraw", label: "Withdraw", icon: "withdraw" },
+        { href: "/dashboard/epins", label: "Packages & E-Pins", icon: "epin" },
+        { href: "/dashboard/orders", label: "Orders & Invoices", icon: "orders" },
       ],
     },
     {
       title: "More",
       items: [
-        { href: "/dashboard/training", label: "Training Academy" },
-        ...(flags?.dist ? [{ href: "/dashboard/distributor", label: "Distributor Portal" }] : []),
-        ...(flags?.mgr ? [{ href: "/dashboard/manager", label: "Manager Portal" }] : []),
+        { href: "/dashboard/training", label: "Training Center", icon: "training" },
+        ...(flags?.dist ? [{ href: "/dashboard/distributor", label: "Distributor Portal", icon: "store" }] : []),
+        ...(flags?.mgr ? [{ href: "/dashboard/manager", label: "Manager Portal", icon: "manager" }] : []),
       ],
     },
   ];
 
   return (
     <Shell
-      brand={s.site_name}
-      short={s.site_short}
+      brand={s.site_short}
       groups={groups}
       userName={me.name}
-      userSub={`${me.code} · ${active ? me.plan_name ?? "Member" : "Inactive"}`}
+      userSub={`${me.code} · ${active ? (rank?.name ?? "Starter") : "Inactive"}`}
       logout={logoutAction}
-      topRight={
+      search={{ action: "/dashboard/tree", name: "q", placeholder: "Search team members by ID…" }}
+      bell={{ href: "/dashboard#announcements", count: (flags?.news ?? 0) + (flags?.rewards ?? 0) }}
+      cta={active ? { href: "/dashboard/team", label: "+ Invite Member" } : { href: "/dashboard/activate", label: "Activate ID" }}
+      topExtra={
         active ? (
-          <Link href="/dashboard/withdraw" className="btn btn-ghost hidden sm:inline-flex">
-            {money(me.earning_balance, s.currency)} · Withdraw
+          <Link href="/dashboard/withdraw" className="btn btn-ghost hidden md:inline-flex">
+            <span className="num">{money(me.earning_balance, s.currency)}</span>
+            <span className="text-mute">·</span> Withdraw
           </Link>
-        ) : (
-          <Link href="/dashboard/activate" className="btn btn-acc">
-            Activate ID
-          </Link>
-        )
+        ) : null
       }
     >
       {children}

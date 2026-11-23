@@ -62,7 +62,7 @@ export const DEFAULT_PRODUCTS = [
     price: 900,
     is_package: true,
     sort: 1,
-    image_url: "/products/handsfree.svg",
+    image_url: "/products/earbuds.webp",
     description: "True wireless earbuds with deep bass, clear calls and a pocket charging case.",
     specs:
       "Bluetooth 5.3\nUp to 20 hours with case\nTouch controls\nBuilt-in microphone for calls\nType-C fast charging\n7-day checking warranty",
@@ -74,7 +74,7 @@ export const DEFAULT_PRODUCTS = [
     price: 900,
     is_package: true,
     sort: 2,
-    image_url: "/products/watch.svg",
+    image_url: "/products/watch.webp",
     description: "Full-touch smart watch with fitness tracking, notifications and call alerts.",
     specs:
       "1.8 inch full-touch display\nHeart rate & step tracking\nWhatsApp / call notifications\nUp to 5 days battery\nSplash resistant\n7-day checking warranty",

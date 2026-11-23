@@ -25,7 +25,7 @@ export default async function Register({
   if (!s.allow_registration) {
     return (
       <div className="mx-auto max-w-lg px-4 py-16 text-center">
-        <h1 className="text-2xl font-black">Registration is closed</h1>
+        <h1 className="text-2xl font-bold">Registration is closed</h1>
         <p className="mt-2 text-mute">Please contact the office: {s.support_phone}</p>
       </div>
     );
@@ -33,7 +33,7 @@ export default async function Register({
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-10">
-      <h1 className="text-2xl font-black sm:text-3xl">Create your account</h1>
+      <h1 className="text-2xl font-bold sm:text-3xl">Create your account</h1>
       <p className="mt-1 text-sm text-mute">
         Your ID stays <b>inactive</b> until you enter a 16-digit E-Pin (given by the office after payment).
       </p>
@@ -73,7 +73,7 @@ export default async function Register({
                   className="sr-only"
                 />
                 <span className="text-sm font-bold">{p.name}</span>
-                <span className="text-sm font-extrabold text-acc">{money(p.price, s.currency)}</span>
+                <span className="text-sm font-semibold text-acc">{money(p.price, s.currency)}</span>
               </label>
             ))}
           </div>
@@ -92,7 +92,7 @@ export default async function Register({
                   className="sr-only"
                 />
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={p.image_url || "/products/handsfree.svg"} alt="" className="h-12 w-12 rounded-lg object-cover" />
+                <img src={p.image_url || "/products/earbuds.webp"} alt="" className="h-12 w-12 rounded-lg object-cover" />
                 <span className="text-sm font-bold leading-tight">{p.name}</span>
               </label>
             ))}
