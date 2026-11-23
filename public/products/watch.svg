@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="40%" r="70%">
+      <stop offset="0" stop-color="#2a1a10"/>
+      <stop offset="1" stop-color="#0d1117"/>
+    </radialGradient>
+    <linearGradient id="strap" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2b313b"/>
+      <stop offset="1" stop-color="#161b22"/>
+    </linearGradient>
+    <linearGradient id="body" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4a525e"/>
+      <stop offset="1" stop-color="#1c2129"/>
+    </linearGradient>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f97316"/>
+      <stop offset="1" stop-color="#facc15"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="600" fill="url(#bg)"/>
+  <ellipse cx="300" cy="530" rx="150" ry="18" fill="#000" opacity=".45"/>
+  <rect x="225" y="40" width="150" height="170" rx="28" fill="url(#strap)"/>
+  <rect x="225" y="390" width="150" height="150" rx="28" fill="url(#strap)"/>
+  <rect x="180" y="160" width="240" height="280" rx="62" fill="url(#body)"/>
+  <rect x="198" y="178" width="204" height="244" rx="48" fill="#05070a"/>
+  <rect x="422" y="250" width="14" height="50" rx="7" fill="url(#acc)"/>
+  <text x="300" y="280" text-anchor="middle" font-family="Arial, sans-serif" font-size="64" font-weight="700" fill="#fff">10:08</text>
+  <text x="300" y="315" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#8b949e">MON 23</text>
+  <circle cx="300" cy="365" r="30" fill="none" stroke="#262d37" stroke-width="8"/>
+  <path d="M300 335 A30 30 0 1 1 272 377" fill="none" stroke="url(#acc)" stroke-width="8" stroke-linecap="round"/>
+  <path d="M291 362 l6 -6 6 6 -6 10z" fill="#f85149"/>
+</svg>

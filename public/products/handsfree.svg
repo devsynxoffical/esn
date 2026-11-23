@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="40%" r="70%">
+      <stop offset="0" stop-color="#2a1a10"/>
+      <stop offset="1" stop-color="#0d1117"/>
+    </radialGradient>
+    <linearGradient id="case" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f4f6f8"/>
+      <stop offset="1" stop-color="#c9ced6"/>
+    </linearGradient>
+    <linearGradient id="bud" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#d4d9e0"/>
+    </linearGradient>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f97316"/>
+      <stop offset="1" stop-color="#facc15"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="600" fill="url(#bg)"/>
+  <ellipse cx="300" cy="470" rx="190" ry="22" fill="#000" opacity=".45"/>
+  <rect x="150" y="250" width="300" height="210" rx="95" fill="url(#case)"/>
+  <rect x="150" y="250" width="300" height="70" rx="35" fill="#e9ecf0"/>
+  <line x1="160" y1="322" x2="440" y2="322" stroke="#aab1bb" stroke-width="3"/>
+  <circle cx="300" cy="395" r="7" fill="url(#acc)"/>
+  <g transform="translate(205 120) rotate(-18)">
+    <ellipse cx="40" cy="60" rx="46" ry="52" fill="url(#bud)"/>
+    <rect x="22" y="95" width="30" height="110" rx="15" fill="url(#bud)"/>
+    <circle cx="40" cy="58" r="20" fill="#1f242c"/>
+    <circle cx="37" cy="203" r="6" fill="url(#acc)"/>
+  </g>
+  <g transform="translate(330 105) rotate(18)">
+    <ellipse cx="40" cy="60" rx="46" ry="52" fill="url(#bud)"/>
+    <rect x="28" y="95" width="30" height="110" rx="15" fill="url(#bud)"/>
+    <circle cx="40" cy="58" r="20" fill="#1f242c"/>
+    <circle cx="43" cy="203" r="6" fill="url(#acc)"/>
+  </g>
+</svg>

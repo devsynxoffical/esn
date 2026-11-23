@@ -1,0 +1,35 @@
+{
+  "name": "esn-platform",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3100",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "db:migrate": "tsx scripts/migrate.ts",
+    "db:seed": "tsx scripts/seed.ts",
+    "db:setup": "tsx scripts/migrate.ts && tsx scripts/seed.ts",
+    "closing": "tsx scripts/closing.ts",
+    "test": "tsx --test tests/*.test.mts"
+  },
+  "dependencies": {
+    "next": "16.3.4",
+    "pg": "^8.13.1",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "server-only": "^0.0.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/pg": "^8.11.10",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.4",
+    "tailwindcss": "^4",
+    "tsx": "^4.19.2",
+    "typescript": "^5"
+  }
+}

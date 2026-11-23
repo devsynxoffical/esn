@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+/* Ember Dark theme (from the ESN project document) */
+@theme {
+  --color-bg: #0d1117;
+  --color-panel: #161b22;
+  --color-panel2: #1c222b;
+  --color-side: #090c10;
+  --color-line: #262d37;
+  --color-fg: #e6edf3;
+  --color-mute: #8b949e;
+  --color-acc: #f97316;
+  --color-acc2: #fb923c;
+  --color-gold: #facc15;
+  --color-ok: #3fb950;
+  --color-warn: #d29922;
+  --color-bad: #f85149;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+html,
+body {
+  background: var(--color-bg);
+  color: var(--color-fg);
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+.grad {
+  background-image: linear-gradient(135deg, #f97316, #facc15);
+}
+.grad-text {
+  background-image: linear-gradient(135deg, #f97316, #facc15);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* form controls */
+.inp {
+  width: 100%;
+  border-radius: 0.6rem;
+  border: 1px solid var(--color-line);
+  background: var(--color-bg);
+  padding: 0.6rem 0.75rem;
+  font-size: 0.9rem;
+  color: var(--color-fg);
+  outline: none;
+}
+.inp:focus {
+  border-color: var(--color-acc);
+  box-shadow: 0 0 0 3px rgb(249 115 22 / 0.18);
+}
+select.inp {
+  appearance: auto;
+}
+.lbl {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-mute);
+  margin-bottom: 0.3rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border-radius: 0.6rem;
+  padding: 0.55rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: filter 0.15s, background 0.15s;
+  white-space: nowrap;
+}
+.btn-acc {
+  background: var(--color-acc);
+  color: #fff;
+}
+.btn-acc:hover {
+  filter: brightness(1.08);
+}
+.btn-ghost {
+  border: 1px solid var(--color-line);
+  color: var(--color-fg);
+  background: transparent;
+}
+.btn-ghost:hover {
+  background: var(--color-panel2);
+}
+.btn-ok {
+  background: rgb(63 185 80 / 0.16);
+  color: var(--color-ok);
+}
+.btn-bad {
+  background: rgb(248 81 73 / 0.16);
+  color: var(--color-bad);
+}
+.btn-sm {
+  padding: 0.3rem 0.65rem;
+  font-size: 0.75rem;
+}
+
+.tbl {
+  width: 100%;
+  font-size: 0.82rem;
+  border-collapse: collapse;
+}
+.tbl th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--color-mute);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 0.55rem 0.6rem;
+  border-bottom: 1px solid var(--color-line);
+  white-space: nowrap;
+}
+.tbl td {
+  padding: 0.6rem;
+  border-bottom: 1px solid var(--color-line);
+  vertical-align: middle;
+}
+.tbl tr:last-child td {
+  border-bottom: 0;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #fff;
+    color: #000;
+  }
+}
