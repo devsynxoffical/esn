@@ -111,7 +111,16 @@ export default async function Register({
                 base(plans) ? `First pair bonus ${m(base(plans)!.direct_pair_bonus)}, then ${m(base(plans)!.indirect_pair_bonus)} per team pair` : "Earn on every matched pair",
                 "Training academy with ready-made scripts",
               ]}
-              products={products.map((p) => ({ name: p.name, image_url: p.image_url || "/products/earbuds.webp", price: m(p.price) }))}
+              stats={
+                plans[0]
+                  ? [
+                      { label: "Package price", value: m(plans[0].price) },
+                      { label: "First pair bonus", value: m(plans[0].direct_pair_bonus) },
+                      { label: "Per team pair", value: m(plans[0].indirect_pair_bonus) },
+                      { label: "Daily earning limit", value: plans[0].daily_cap_amount > 0 ? m(plans[0].daily_cap_amount) : "No limit" },
+                    ]
+                  : []
+              }
             />
           </div>
         </div>
@@ -208,11 +217,11 @@ export default async function Register({
             </Step>
 
             <Step n={3} title="Choose your product" sub="Included in your package and delivered to your address.">
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid gap-3 sm:grid-cols-2">
                 {products.map((p, i) => (
                   <label
                     key={p.id}
-                    className="relative cursor-pointer overflow-hidden rounded-xl border border-line bg-bg/40 transition hover:border-acc/40 has-[:checked]:border-acc has-[:checked]:ring-2 has-[:checked]:ring-acc/30"
+                    className="relative flex cursor-pointer items-center gap-3 rounded-xl border border-line bg-bg/40 p-2.5 pr-10 transition hover:border-acc/40 has-[:checked]:border-acc has-[:checked]:bg-acc/[0.07]"
                   >
                     <input
                       type="radio"
@@ -221,14 +230,14 @@ export default async function Register({
                       defaultChecked={sp.product ? String(p.id) === sp.product : i === 0}
                       className="peer sr-only"
                     />
-                    <span className="absolute right-2.5 top-2.5 z-10 hidden h-6 w-6 place-items-center rounded-full bg-acc text-white shadow-lg peer-checked:grid">
-                      <Check size={14} strokeWidth={3} />
-                    </span>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={p.image_url || "/products/earbuds.webp"} alt={p.name} className="aspect-[4/3] w-full object-cover" />
-                    <span className="block px-3.5 py-3">
+                    <img src={p.image_url || "/products/earbuds.webp"} alt="" className="h-14 w-14 shrink-0 rounded-lg object-cover" />
+                    <span className="min-w-0">
                       <span className="block truncate text-[13.5px] font-semibold">{p.name}</span>
                       <span className="block text-[12px] text-mute">{p.category}</span>
+                    </span>
+                    <span className="absolute right-3 top-1/2 hidden h-5 w-5 -translate-y-1/2 place-items-center rounded-full bg-acc text-white peer-checked:grid">
+                      <Check size={12} strokeWidth={3} />
                     </span>
                   </label>
                 ))}

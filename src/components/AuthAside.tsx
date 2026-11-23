@@ -5,12 +5,12 @@ export default function AuthAside({
   title,
   sub,
   points,
-  products,
+  stats,
 }: {
   title: React.ReactNode;
   sub: string;
   points: string[];
-  products: { name: string; image_url: string; price: string }[];
+  stats: { label: string; value: string }[];
 }) {
   return (
     <aside className="relative hidden overflow-hidden border-r border-line bg-side lg:flex lg:flex-col">
@@ -29,20 +29,16 @@ export default function AuthAside({
             </li>
           ))}
         </ul>
-        <div className="mt-auto grid max-w-md grid-cols-2 gap-4 pt-12">
-          {products.slice(0, 2).map((p, i) => (
-            <div
-              key={p.name}
-              className={`overflow-hidden rounded-2xl border border-white/10 bg-panel shadow-2xl shadow-black/50 ${i === 1 ? "translate-y-6" : ""}`}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={p.image_url} alt={p.name} className="aspect-square w-full object-cover" />
-              <div className="px-3.5 py-3">
-                <div className="truncate text-[12.5px] font-semibold">{p.name}</div>
-                <div className="num text-[13px] font-bold text-acc">{p.price}</div>
+        <div className="mt-auto max-w-md pt-12">
+          <div className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 shadow-2xl shadow-black/40">
+            {stats.map((st) => (
+              <div key={st.label} className="bg-panel/95 px-5 py-4">
+                <div className="num text-[20px] font-bold tracking-[-0.02em]">{st.value}</div>
+                <div className="text-[12.5px] text-mute">{st.label}</div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+          <p className="mt-4 text-[12.5px] text-mute">Secure login · Your data is never shared · Support from our office team</p>
         </div>
       </div>
     </aside>

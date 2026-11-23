@@ -12,7 +12,7 @@ export const metadata = { title: "Log in" };
 export default async function Login({ searchParams }: { searchParams: Promise<{ ok?: string; err?: string }> }) {
   const sp = await searchParams;
   const s = await getSettings();
-  const products = await q("SELECT name, image_url, price FROM products WHERE is_package AND active ORDER BY sort, id LIMIT 2");
+  const plan = (await q("SELECT * FROM plans WHERE active AND public ORDER BY sort, id LIMIT 1"))[0];
   const wa = String(s.support_whatsapp).replace(/\D/g, "");
 
   return (
@@ -30,7 +30,16 @@ export default async function Login({ searchParams }: { searchParams: Promise<{ 
           "Withdraw to JazzCash, EasyPaisa or bank",
           "Training academy & rank rewards",
         ]}
-        products={products.map((p) => ({ name: p.name, image_url: p.image_url || "/products/earbuds.webp", price: money(p.price, s.currency) }))}
+        stats={
+          plan
+            ? [
+                { label: "Package price", value: money(plan.price, s.currency) },
+                { label: "First pair bonus", value: money(plan.direct_pair_bonus, s.currency) },
+                { label: "Per team pair", value: money(plan.indirect_pair_bonus, s.currency) },
+                { label: "Daily earning limit", value: plan.daily_cap_amount > 0 ? money(plan.daily_cap_amount, s.currency) : "No limit" },
+              ]
+            : []
+        }
       />
 
       <div className="flex items-center justify-center px-5 py-14 sm:px-10">
