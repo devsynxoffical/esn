@@ -354,7 +354,7 @@ export default async function Home() {
           <div>
             <Head center={false} eyebrow="FAQ" title="Questions? Answered." />
             <div className="mt-5 space-y-2">
-              {FAQ.map(([qq, a], i) => (
+              {FAQ.map(([qq, a]) => (
                 <details key={qq} className="group rounded-xl border border-line bg-panel px-5 py-3.5 open:border-acc/40 sm:py-4">
                   <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[14.5px] font-semibold [&::-webkit-details-marker]:hidden">
                     {qq}
