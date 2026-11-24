@@ -3,7 +3,7 @@ import { connection } from "next/server";
 import { Menu, Phone, Mail, MapPin, MessageCircle, ArrowRight } from "lucide-react";
 import { currentUser } from "@/lib/auth";
 import { getSettings } from "@/lib/settings";
-import { Logo } from "@/components/ui";
+import { Logo, LogoMark } from "@/components/ui";
 import { setupProblem } from "@/lib/bootstrap";
 import SetupNotice from "@/components/SetupNotice";
 
@@ -26,9 +26,10 @@ export default async function StoreLayout({ children }: { children: React.ReactN
   return (
     <div className="flex min-h-screen flex-col overflow-x-clip">
       <header className="sticky top-0 z-40 border-b border-white/[0.06] bg-bg/75 backdrop-blur-xl">
-        <div className="mx-auto flex h-[68px] max-w-7xl items-center justify-between gap-4 px-5">
-          <Link href="/" aria-label="Home" className="shrink-0">
-            <Logo name={s.site_name} />
+        <div className="mx-auto flex h-[68px] max-w-7xl items-center justify-between gap-3 px-4 sm:px-5">
+          <Link href="/" aria-label="Home" className="flex min-w-0 shrink items-center gap-2.5">
+            <LogoMark size={34} />
+            <span className="truncate text-[15px] font-bold tracking-[-0.02em] sm:text-[17px]">{s.site_name}</span>
           </Link>
           <nav className="hidden items-center gap-1 lg:flex">
             {NAV.map(([href, label]) => (
@@ -37,9 +38,9 @@ export default async function StoreLayout({ children }: { children: React.ReactN
               </Link>
             ))}
           </nav>
-          <div className="flex items-center gap-2">
+          <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
             {dash ? (
-              <Link href={dash} className="btn btn-acc">
+              <Link href={dash} className="btn btn-acc h-9 px-3.5 text-[13px] sm:h-10 sm:px-4 sm:text-[14px]">
                 {u!.role === "admin" ? "Admin panel" : "My dashboard"}
               </Link>
             ) : (
@@ -47,13 +48,13 @@ export default async function StoreLayout({ children }: { children: React.ReactN
                 <Link href="/login" className="btn btn-ghost hidden sm:inline-flex">
                   Log in
                 </Link>
-                <Link href="/register" className="btn btn-acc">
+                <Link href="/register" className="btn btn-acc h-9 px-3.5 text-[13px] sm:h-10 sm:px-4 sm:text-[14px]">
                   Join now
                 </Link>
               </>
             )}
             <details className="group relative lg:hidden">
-              <summary className="grid h-10 w-10 cursor-pointer list-none place-items-center rounded-[10px] border border-line text-mute [&::-webkit-details-marker]:hidden">
+              <summary className="grid h-9 w-9 cursor-pointer sm:h-10 sm:w-10 list-none place-items-center rounded-[10px] border border-line text-mute [&::-webkit-details-marker]:hidden">
                 <Menu size={18} />
               </summary>
               <div className="absolute right-0 top-12 w-56 rounded-xl border border-line bg-panel p-2 shadow-2xl shadow-black/50">

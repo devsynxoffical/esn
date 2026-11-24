@@ -15,6 +15,8 @@ export default function TreeView({ nodes, rootId, hrefFor }: { nodes: Row[]; roo
   }
 
   return (
+    <>
+    <p className="mb-2 text-[12px] text-mute md:hidden">Swipe sideways to see the whole tree →</p>
     <div className="overflow-x-auto pb-2">
       <div className="min-w-[720px] space-y-6">
         {levels.map((row, d) => (
@@ -57,5 +59,6 @@ export default function TreeView({ nodes, rootId, hrefFor }: { nodes: Row[]; roo
         ))}
       </div>
     </div>
+    </>
   );
 }

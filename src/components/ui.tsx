@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ResponsiveTable from "./ResponsiveTable";
 
 export function Card({
   title,
@@ -46,10 +47,10 @@ export function Stat({
         hero ? "grad border-transparent text-white shadow-[0_8px_30px_-12px_rgba(249,115,22,0.6)]" : "border-line bg-panel"
       }`}
     >
-      <div className={`truncate text-[11px] font-semibold uppercase tracking-[0.06em] ${hero ? "text-white/90" : "text-mute"}`}>
+      <div className={`line-clamp-2 text-[11px] font-semibold uppercase leading-snug tracking-[0.06em] sm:truncate ${hero ? "text-white/90" : "text-mute"}`}>
         {label}
       </div>
-      <div className="num mt-1.5 truncate text-[22px] font-bold leading-tight tracking-[-0.02em]">{value}</div>
+      <div className="num mt-1.5 truncate text-[19px] font-bold leading-tight tracking-[-0.02em] sm:text-[22px]">{value}</div>
       {sub != null && <div className={`mt-1 truncate text-[12px] ${hero ? "text-white/90" : toneCls}`}>{sub}</div>}
     </div>
   );
@@ -227,11 +228,7 @@ export function Empty({ children }: { children: React.ReactNode }) {
 }
 
 export function Table({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="-mx-5 overflow-x-auto px-5">
-      <table className="tbl">{children}</table>
-    </div>
-  );
+  return <ResponsiveTable>{children}</ResponsiveTable>;
 }
 
 export function Pager({ page, hasMore, base }: { page: number; hasMore: boolean; base: string }) {

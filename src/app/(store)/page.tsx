@@ -145,7 +145,7 @@ export default async function Home() {
       <section id="products" className={`border-t border-line bg-side/60 ${SCREEN}`}>
         <div className="mx-auto w-full max-w-7xl px-5">
           <Head eyebrow="Products" title="Two best-sellers. One fair price." sub="Every package includes one original product of your choice, delivered with a 7-day checking warranty." />
-          <div className="mx-auto mt-8 grid max-w-5xl gap-4 sm:mt-10 md:grid-cols-2 md:gap-6">
+          <div className="mx-auto mt-8 grid max-w-5xl grid-cols-1 gap-4 sm:mt-10 lg:grid-cols-2 lg:gap-6">
             {packages.map((p) => {
               const specs = String(p.specs || "")
                 .split("\n")
@@ -154,7 +154,7 @@ export default async function Home() {
                 .slice(0, 3);
               return (
                 <div key={p.id} className="group flex overflow-hidden rounded-2xl border border-line bg-panel">
-                  <div className="m-2.5 aspect-square w-[104px] shrink-0 self-center overflow-hidden rounded-xl bg-[#0b0f14] sm:m-3 sm:w-[150px] md:w-[200px] lg:w-[220px]">
+                  <div className="m-2.5 aspect-square w-[104px] shrink-0 self-center overflow-hidden rounded-xl bg-[#0b0f14] sm:m-3 sm:w-[170px] lg:w-[190px] xl:w-[220px]">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={p.image_url || "/products/earbuds.webp"}

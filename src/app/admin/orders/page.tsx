@@ -48,7 +48,7 @@ export default async function Orders({
       />
       <Flash sp={sp} />
       <Card>
-        <div className="mb-3 flex gap-2 text-sm">
+        <div className="mb-3 flex flex-wrap gap-2 text-sm">
           {[
             ["", "All types"],
             ["package", "Package products"],

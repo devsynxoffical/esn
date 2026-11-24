@@ -139,7 +139,7 @@ export default async function Dashboard({ searchParams }: { searchParams: Promis
       )}
 
       {/* Row 2 */}
-      <div className="mt-4 grid gap-4 xl:grid-cols-12">
+      <div className="mt-4 grid grid-cols-1 gap-4 xl:grid-cols-12">
         <Card
           title="Binary tree"
           action={
@@ -223,7 +223,7 @@ export default async function Dashboard({ searchParams }: { searchParams: Promis
       </div>
 
       {/* Row 3 */}
-      <div className="mt-4 grid gap-4 xl:grid-cols-12">
+      <div className="mt-4 grid grid-cols-1 gap-4 xl:grid-cols-12">
         <Card
           title="Rank progress"
           action={<Link href="/dashboard/ranks">{rp.next ? `${rp.current?.name ?? "Starter"} → ${rp.next.name}` : "Top rank"}</Link>}
@@ -314,7 +314,7 @@ export default async function Dashboard({ searchParams }: { searchParams: Promis
           )}
         </Card>
 
-        <div className="space-y-4 xl:col-span-4">
+        <div className="min-w-0 space-y-4 xl:col-span-4">
           <Card title="Leaderboard" action="This month">
             {leaders.length ? (
               leaders.map((l, i) => (

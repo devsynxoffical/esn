@@ -124,7 +124,7 @@ export default async function AdminHome({ searchParams }: { searchParams: Promis
         <Stat label="New today" value={num(today!.joins)} sub={`${today!.regs} registrations`} tone="ok" />
       </div>
 
-      <div className="mt-4 grid gap-4 xl:grid-cols-12">
+      <div className="mt-4 grid grid-cols-1 gap-4 xl:grid-cols-12">
         <Card
           title="Members"
           action={
@@ -208,7 +208,7 @@ export default async function AdminHome({ searchParams }: { searchParams: Promis
           )}
         </Card>
 
-        <div className="space-y-4 xl:col-span-3">
+        <div className="min-w-0 space-y-4 xl:col-span-3">
           <Card title="Payout requests" action={<Link href="/admin/withdrawals">{w!.n} pending</Link>}>
             {payouts.length ? (
               payouts.map((p) => (
@@ -255,7 +255,7 @@ export default async function AdminHome({ searchParams }: { searchParams: Promis
         </div>
       </div>
 
-      <div className="mt-4 grid gap-4 xl:grid-cols-12">
+      <div className="mt-4 grid grid-cols-1 gap-4 xl:grid-cols-12">
         <Card title="Pair income paid" action={`${m(f!.direct)} direct · ${m(f!.indirect)} indirect`} className="xl:col-span-4">
           <Bars data={pairDays} height={120} format={m} />
           <h3 className="mb-2 mt-6 text-[15px] font-semibold">Liability monitor</h3>

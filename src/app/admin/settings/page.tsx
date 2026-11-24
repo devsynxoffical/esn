@@ -79,7 +79,7 @@ export default async function Settings({ searchParams }: { searchParams: Promise
           </Card>
         ))}
         <div className="sticky bottom-3 z-10 flex justify-end">
-          <button className="btn btn-acc px-8 py-3 shadow-lg shadow-black/40">Save all settings</button>
+          <button className="btn btn-acc btn-lg w-full shadow-lg shadow-black/40 sm:w-auto sm:px-8">Save all settings</button>
         </div>
       </form>
     </>

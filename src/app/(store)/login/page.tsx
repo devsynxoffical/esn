@@ -16,7 +16,7 @@ export default async function Login({ searchParams }: { searchParams: Promise<{ 
   const wa = String(s.support_whatsapp).replace(/\D/g, "");
 
   return (
-    <div className="grid min-h-[calc(100vh-68px)] lg:grid-cols-[1.05fr_1fr]">
+    <div className="grid min-h-[calc(100vh-68px)] grid-cols-1 lg:grid-cols-[1.05fr_1fr]">
       <AuthAside
         title={
           <>

@@ -94,7 +94,7 @@ export default async function Register({
   }
 
   return (
-    <div className="grid min-h-[calc(100vh-68px)] lg:grid-cols-[0.85fr_1.15fr]">
+    <div className="grid min-h-[calc(100vh-68px)] grid-cols-1 lg:grid-cols-[0.85fr_1.15fr]">
       <div className="hidden border-r border-line bg-side lg:block">
         <div className="sticky top-[68px] flex h-[calc(100vh-68px)]">
           <div className="grid w-full">
@@ -126,7 +126,7 @@ export default async function Register({
         </div>
       </div>
 
-      <div className="px-5 py-12 sm:px-10">
+      <div className="min-w-0 px-4 py-10 sm:px-10 sm:py-12">
         <div className="mx-auto w-full max-w-[640px]">
           <h1 className="text-[28px] font-bold tracking-[-0.03em]">Create your account</h1>
           <p className="mt-1.5 text-[14.5px] text-mute">
