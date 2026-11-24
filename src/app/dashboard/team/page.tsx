@@ -72,7 +72,7 @@ export default async function Team({ searchParams }: { searchParams: Promise<{ o
                     <td>{r.name}</td>
                     <td className="text-mute">{r.plan}</td>
                     <td>{(r.position ?? r.preferred_leg) === "R" ? "Right" : "Left"}</td>
-                    <td className="font-mono text-mute">{r.parent_code ?? "—"}</td>
+                    <td className="font-mono text-mute">{r.parent_code ?? "Not placed yet"}</td>
                     <td>
                       <Badge>{r.status}</Badge>
                     </td>

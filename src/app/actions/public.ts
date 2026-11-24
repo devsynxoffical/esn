@@ -134,6 +134,6 @@ export async function placeOrderAction(fd: FormData) {
        VALUES ('store',$1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING id`,
       [p!.id, p!.name, p!.vendor_id, qty, p!.price * qty, name, phone, address, city],
     );
-    return `Order #${o!.id} placed! Cash on delivery — our team will call you to confirm.`;
+    return `Order #${o!.id} placed! Cash on delivery. Our team will call you to confirm.`;
   });
 }

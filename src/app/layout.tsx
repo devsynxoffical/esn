@@ -4,7 +4,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: { default: "Elite Sales Network", template: "%s · ESN" },
-  description: "Original Handsfree & Smart Watches with a sales business opportunity — Elite Sales Network.",
+  description: "Original Handsfree & Smart Watches with a sales business opportunity by Elite Sales Network.",
 };
 
 export const viewport: Viewport = {

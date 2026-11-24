@@ -20,11 +20,11 @@ export default async function Profile({ searchParams }: { searchParams: Promise<
             {[
               ["Member ID", me.code],
               ["Status", <Badge key="s">{me.status}</Badge>],
-              ["Plan", me.plan_name ?? "—"],
+              ["Plan", me.plan_name ?? "None"],
               ["Mobile", me.phone],
-              ["CNIC", me.cnic ?? "—"],
-              ["Sponsor", sponsor ? `${sponsor.name} (${sponsor.code})` : "—"],
-              ["Placed under", parent ? `${parent.name} (${parent.code}) · ${me.position === "L" ? "Left" : "Right"}` : "—"],
+              ["CNIC", me.cnic ?? "Not added"],
+              ["Sponsor", sponsor ? `${sponsor.name} (${sponsor.code})` : "None"],
+              ["Placed under", parent ? `${parent.name} (${parent.code}) · ${me.position === "L" ? "Left" : "Right"}` : "Not placed yet"],
               ["Joined", dt(me.created_at)],
               ["Activated", dt(me.activated_at)],
             ].map(([k, v], i) => (

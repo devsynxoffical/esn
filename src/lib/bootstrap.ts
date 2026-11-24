@@ -31,6 +31,18 @@ async function setup() {
          WHEN '/products/watch.svg' THEN '/products/watch.webp' END
        WHERE image_url IN ('/products/handsfree.svg', '/products/watch.svg')`,
     );
+    // one-time cleanup of long dashes in stored text
+    await c.query(`UPDATE training SET title = replace(title, ' — ', ': ') WHERE title LIKE '%—%'`);
+    await c.query(
+      `UPDATE settings SET value = to_jsonb(replace(value #>> '{}', ' — ', ', '))
+       WHERE jsonb_typeof(value) = 'string' AND value #>> '{}' LIKE '%—%'`,
+    );
+    await c.query(
+      `UPDATE announcements SET title = replace(replace(title, ' — ', ': '), '—', ', '),
+         body = replace(replace(body, ' — ', ', '), '—', ', ')
+       WHERE title LIKE '%—%' OR body LIKE '%—%'`,
+    );
+    await c.query(`UPDATE transactions SET note = replace(note, ' — ', ' and ') WHERE note LIKE '%—%'`);
     const admin = await one("SELECT id FROM users WHERE role = 'admin' LIMIT 1", [], c);
     if (admin) return;
     const adminPhone = process.env.ADMIN_PHONE ? normPhone(process.env.ADMIN_PHONE) : "";

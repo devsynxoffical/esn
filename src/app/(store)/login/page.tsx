@@ -23,7 +23,7 @@ export default async function Login({ searchParams }: { searchParams: Promise<{ 
             Welcome back to your <span className="grad-text">business dashboard</span>
           </>
         }
-        sub="Track your team, see today's pairs, manage your wallets and request withdrawals — all in one place."
+        sub="Track your team, see today's pairs, manage your wallets and request withdrawals, all in one place."
         points={[
           "Live Left & Right team tree",
           "Earning wallet and E-Pin wallet",

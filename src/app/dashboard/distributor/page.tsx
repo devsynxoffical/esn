@@ -153,7 +153,7 @@ export default async function Distributor({ searchParams }: { searchParams: Prom
                   <td>
                     <Badge>{o.status}</Badge>
                   </td>
-                  <td className="text-ok">{o.settled ? money(o.vendor_profit, cur) : "—"}</td>
+                  <td className="text-ok">{o.settled ? money(o.vendor_profit, cur) : "Pending"}</td>
                   <td className="whitespace-nowrap text-mute">{dt(o.created_at)}</td>
                 </tr>
               ))}

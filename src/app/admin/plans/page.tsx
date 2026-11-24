@@ -32,8 +32,8 @@ function PlanForm({ p }: { p?: Row }) {
         {f("direct_pair_bonus", "Direct pair bonus (1st pair)", "Paid once on 1 Left + 1 Right own direct")}
         {f("indirect_pair_bonus", "Indirect pair bonus (per pair)", "Every 1:1 match after the first pair")}
         {f("direct_referral_bonus", "Direct referral bonus (per direct)", "0 = off. Paid instantly per activated direct")}
-        {f("daily_cap_pairs", "Daily capping — max pairs", "0 = no pair limit", "1")}
-        {f("daily_cap_amount", "Daily capping — max amount", "0 = no amount limit")}
+        {f("daily_cap_pairs", "Daily capping: max pairs", "0 = no pair limit", "1")}
+        {f("daily_cap_amount", "Daily capping: max amount", "0 = no amount limit")}
         {f("monthly_salary", "Manager monthly salary", "Only for manager plans")}
       </div>
       <div className="flex flex-wrap gap-x-6 gap-y-2">

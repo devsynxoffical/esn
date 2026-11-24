@@ -39,14 +39,14 @@ export default async function Orders() {
                   <td>
                     <Badge>{o.status}</Badge>
                   </td>
-                  <td className="text-mute">{[o.courier, o.tracking_id].filter(Boolean).join(" · ") || "—"}</td>
+                  <td className="text-mute">{[o.courier, o.tracking_id].filter(Boolean).join(" · ") || "Not yet"}</td>
                   <td>
                     {o.invoice ? (
                       <Link className="text-acc" href={`/invoice/${o.invoice}`} target="_blank">
                         {o.invoice}
                       </Link>
                     ) : (
-                      "—"
+                      "Not yet"
                     )}
                   </td>
                   <td className="whitespace-nowrap text-mute">{dt(o.created_at)}</td>

@@ -66,7 +66,7 @@ const FAQ = [
   ["How do I activate my account?", "Register online, pay at the office and receive a 16-digit E-Pin. Enter it in your dashboard and your ID goes live instantly, with your product order and receipt created automatically."],
   ["How are commissions calculated?", "Your first pair (1 Left + 1 Right from your own links) pays the first-pair bonus. After that every 1:1 match anywhere in your team pays the team pair bonus, up to the daily limit."],
   ["When and how do I get paid?", "Pair income reaches your earning wallet at the midnight closing. Withdraw to JazzCash, EasyPaisa or a bank account from your dashboard."],
-  ["How long does delivery take?", "Products ship by tracked courier across Pakistan, usually within 2–5 working days. Track the status in your dashboard."],
+  ["How long does delivery take?", "Products ship by tracked courier across Pakistan, usually within 2 to 5 working days. Track the status in your dashboard."],
 ];
 
 export default async function Home() {
@@ -190,7 +190,7 @@ export default async function Home() {
           </div>
           {store.length > 0 && (
             <div className="mx-auto mt-6 max-w-5xl text-center text-[13.5px] text-mute">
-              Plus {store.length} product{store.length > 1 ? "s" : ""} from our partner brands —{" "}
+              Plus {store.length} product{store.length > 1 ? "s" : ""} from our partner brands.{" "}
               <Link href={`/product/${store[0].slug}`} className="font-semibold text-acc hover:underline">
                 browse
               </Link>
@@ -202,7 +202,7 @@ export default async function Home() {
       {/* ───────── 3. HOW IT WORKS ───────── */}
       <section id="how-it-works" className={`border-t border-line ${SCREEN}`}>
         <div className="mx-auto w-full max-w-7xl px-5">
-          <Head eyebrow="How it works" title="From first order to first payout" sub="Four simple steps — no experience needed." />
+          <Head eyebrow="How it works" title="From first order to first payout" sub="Four simple steps, no experience needed." />
           <div className="relative mt-8 grid grid-cols-2 gap-3 sm:mt-12 sm:gap-5 lg:grid-cols-4">
             <div className="pointer-events-none absolute left-[12%] right-[12%] top-[46px] hidden h-px bg-gradient-to-r from-transparent via-acc/40 to-transparent lg:block" />
             {(
@@ -320,7 +320,7 @@ export default async function Home() {
       {ranks.length > 0 && (
         <section id="rewards" className={`border-t border-line bg-side/60 ${SCREEN}`}>
           <div className="mx-auto w-full max-w-7xl px-5">
-            <Head eyebrow="Rank rewards" title="Bigger team, bigger rewards" sub="Each rank counts fresh pairs. Take the gift or the cash — your choice." />
+            <Head eyebrow="Rank rewards" title="Bigger team, bigger rewards" sub="Each rank counts fresh pairs. Take the gift or the cash, your choice." />
             <div className="mt-6 grid grid-cols-2 gap-2.5 sm:mt-10 sm:gap-4 lg:grid-cols-4">
               {ranks.map((r, i) => (
                 <div
@@ -372,7 +372,7 @@ export default async function Home() {
               Start with one product. Build something bigger.
             </h2>
             <p className="relative mt-2 text-[14px] text-white/90 sm:mt-3 sm:text-[15px]">
-              Your gadget, business ID and training academy{base ? ` — all for ${m(base.price)}` : ""}.
+              Your gadget, business ID and training academy{base ? `, all for ${m(base.price)}` : ""}.
             </p>
             <div className="relative mt-5 flex flex-wrap gap-2.5 sm:mt-7 sm:gap-3">
               <Link href="/register" className="btn bg-white text-[#0d1117] hover:bg-white/90 sm:h-12 sm:px-[22px] sm:text-[15px]">

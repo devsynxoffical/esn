@@ -135,7 +135,7 @@ export async function processWithdrawal(c: PoolClient, id: number, action: "paid
     c,
   );
   if (action === "rejected") {
-    await credit(c, w!.user_id, "earning", "withdrawal_refund", w!.amount, `Withdrawal #${id} rejected — refunded`, {
+    await credit(c, w!.user_id, "earning", "withdrawal_refund", w!.amount, `Withdrawal #${id} rejected and refunded`, {
       type: "withdrawal",
       id,
     });

@@ -20,7 +20,7 @@ and manager pool %.
 |---|---|
 | Plans | Networker / Sales Consultant, Distributor, Manager |
 | Package price | Rs. 900 (Handsfree or Watch) |
-| First pair (direct pair) | Rs. 400 — needs 1 Left + 1 Right **own direct** referrals (upline spillover does not unlock it) |
+| First pair (direct pair) | Rs. 400: needs 1 Left + 1 Right **own direct** referrals (upline spillover does not unlock it) |
 | Indirect pair | Rs. 200 per 1:1 match, unlimited depth, after the first pair |
 | Carry forward | Unmatched members on the power leg stay and match later (never expires by default) |
 | Daily capping | 20 pairs / Rs. 4,000 per day |
@@ -52,19 +52,19 @@ Admin → Admins & Password.
 ## Deploy on Vercel
 
 1. **Database**: in your Vercel project open **Storage → Create / Connect Database → Neon (Postgres)** and connect it
-   to the project. This adds `DATABASE_URL` automatically. (Any PostgreSQL works — paste its connection string with
+   to the project. This adds `DATABASE_URL` automatically. (Any PostgreSQL works: paste its connection string with
    `?sslmode=require` as `DATABASE_URL`.)
 2. **Environment variables** (Project → Settings → Environment Variables, for Production and Preview):
-   - `ADMIN_PHONE` — your admin login mobile, e.g. `03001234567`
-   - `ADMIN_PASSWORD` — a strong password (8+ characters)
-   - `CRON_SECRET` — a long random string (Vercel Cron sends it automatically)
+   - `ADMIN_PHONE`: your admin login mobile, e.g. `03001234567`
+   - `ADMIN_PASSWORD`: a strong password (8+ characters)
+   - `CRON_SECRET`: a long random string (Vercel Cron sends it automatically)
 3. **Redeploy** (Deployments → ⋯ → Redeploy). On the first visit the app creates all tables, the default plans, ranks,
-   products, the admin login and the company top ID by itself — no commands to run.
+   products, the admin login and the company top ID by itself: no commands to run.
 4. **Domain**: Project → Settings → Domains → add `elitesalesnetwork.com` and set the DNS records Vercel shows. SSL is
    automatic.
 5. **Midnight closing** runs from `vercel.json` (Vercel Cron, 19:00 UTC = 12:00 AM Pakistan time). If a run is
    missed, the next dashboard visit closes the day automatically.
-6. **Uploads**: Vercel has no permanent disk, so file uploads (product images, PDFs, logos) are disabled there — paste
+6. **Uploads**: Vercel has no permanent disk, so file uploads (product images, PDFs, logos) are disabled there: paste
    image / PDF / YouTube links instead. For uploads, host on a VPS (below).
 
 ## Deploy on a VPS (Ubuntu) for elitesalesnetwork.com

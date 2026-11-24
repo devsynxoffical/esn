@@ -55,14 +55,14 @@ export default async function Ranks({ searchParams }: { searchParams: Promise<{ 
     <>
       <PageHead
         title="Ranks & Rewards"
-        sub={`Counting mode: ${s.rank_mode === "fresh" ? "FRESH pairs (each rank counts new pairs after the previous rank)" : "CUMULATIVE pairs"} — change in Master Settings. Members choose gift OR cash.`}
+        sub={`Counting mode: ${s.rank_mode === "fresh" ? "FRESH pairs (each rank counts new pairs after the previous rank)" : "CUMULATIVE pairs"}. Change it in Master Settings. Members choose gift OR cash.`}
       />
       <Flash sp={sp} />
       <div className="space-y-3">
         {ranks.map((r) => (
           <Card
             key={r.id}
-            title={`Rank ${r.level} — ${r.name}${r.active ? "" : " (inactive)"}`}
+            title={`Rank ${r.level}: ${r.name}${r.active ? "" : " (inactive)"}`}
             action={
               <form action={deleteRankAction}>
                 <input type="hidden" name="id" value={r.id} />

@@ -61,7 +61,7 @@ export default async function Epins({
               <select className="inp" name="plan_id">
                 {plans.map((p) => (
                   <option key={p.id} value={p.id}>
-                    {p.name} — {money(p.price, s.currency)}
+                    {p.name} ({money(p.price, s.currency)})
                   </option>
                 ))}
               </select>
@@ -71,7 +71,7 @@ export default async function Epins({
               <input className="inp" name="count" type="number" min={1} max={1000} defaultValue={10} required />
             </label>
             <label className="block sm:col-span-3">
-              <span className="lbl">Assign to member ID (optional — leave empty to keep in office stock)</span>
+              <span className="lbl">Assign to member ID (optional, leave empty to keep in office stock)</span>
               <input className="inp uppercase" name="owner" placeholder="ESN10023" />
             </label>
             <button className="btn btn-acc sm:col-span-3">Generate 16-digit E-Pins</button>
@@ -143,8 +143,8 @@ export default async function Epins({
                   </td>
                   <td className="text-mute">{p.source}</td>
                   <td className="font-mono text-xs">{p.owner_code ?? "office"}</td>
-                  <td className="font-mono text-xs">{p.used_code ?? "—"}</td>
-                  <td className="text-xs text-mute">{p.batch ?? "—"}</td>
+                  <td className="font-mono text-xs">{p.used_code ?? "None"}</td>
+                  <td className="text-xs text-mute">{p.batch ?? "None"}</td>
                   <td className="whitespace-nowrap text-xs text-mute">{dt(p.used_at ?? p.created_at)}</td>
                   <td>
                     {p.status === "unused" && (

@@ -78,9 +78,9 @@ export default async function Members({
                   <td>
                     {u.name} {u.is_company && <Badge tone="acc">company</Badge>}
                   </td>
-                  <td className="font-mono text-xs">{u.is_company ? "—" : u.phone}</td>
+                  <td className="font-mono text-xs">{u.is_company ? "Company" : u.phone}</td>
                   <td className="text-mute">{u.plan}</td>
-                  <td className="font-mono text-xs text-mute">{u.sponsor_code ?? "—"}</td>
+                  <td className="font-mono text-xs text-mute">{u.sponsor_code ?? "None"}</td>
                   <td>
                     {u.left_count} / {u.right_count}
                   </td>

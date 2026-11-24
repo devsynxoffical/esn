@@ -33,7 +33,7 @@ export default async function Tools({ searchParams }: { searchParams: Promise<{ 
             </label>
             <button className="btn btn-acc">Generate demo data</button>
           </form>
-          <p className="mt-3 text-[12.5px] text-mute">Takes 10–60 seconds. You can run it more than once.</p>
+          <p className="mt-3 text-[12.5px] text-mute">Takes 10 to 60 seconds. You can run it more than once.</p>
         </Card>
         <Card title="Reset all member data">
           <p className="mb-4 text-[13.5px] text-mute">

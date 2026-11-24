@@ -134,7 +134,7 @@ export default async function Dashboard({ searchParams }: { searchParams: Promis
       {!u!.first_pair_done && (
         <div className="mt-4 rounded-xl border border-warn/30 bg-warn/10 px-4 py-3 text-[13.5px] text-warn">
           Unlock your first pair ({m(u!.direct_pair_bonus)}): bring 1 member from your <b>Left link</b> and 1 from your{" "}
-          <b>Right link</b>. Your own directs — Left {u!.direct_left} · Right {u!.direct_right}.
+          <b>Right link</b>. Your own directs: Left {u!.direct_left} · Right {u!.direct_right}.
         </div>
       )}
 

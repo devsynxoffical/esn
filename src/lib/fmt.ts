@@ -8,7 +8,7 @@ export function num(n: number | string | null | undefined) {
 }
 
 export function dt(d: string | Date | null | undefined) {
-  if (!d) return "—";
+  if (!d) return "Not yet";
   return new Date(d).toLocaleString("en-PK", {
     timeZone: "Asia/Karachi",
     day: "2-digit",
@@ -20,7 +20,7 @@ export function dt(d: string | Date | null | undefined) {
 }
 
 export function dOnly(d: string | Date | null | undefined) {
-  if (!d) return "—";
+  if (!d) return "Not yet";
   return new Date(d).toLocaleDateString("en-PK", { timeZone: "Asia/Karachi", day: "2-digit", month: "short", year: "numeric" });
 }
 

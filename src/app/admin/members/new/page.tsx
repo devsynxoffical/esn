@@ -55,7 +55,7 @@ export default async function NewMember({ searchParams }: { searchParams: Promis
               <select className="inp" name="plan_id">
                 {plans.map((p) => (
                   <option key={p.id} value={p.id}>
-                    {p.name} — {money(p.price, s.currency)}
+                    {p.name} ({money(p.price, s.currency)})
                   </option>
                 ))}
               </select>
@@ -90,7 +90,7 @@ export default async function NewMember({ searchParams }: { searchParams: Promis
               <span className="lbl">Activation</span>
               <select className="inp" name="activation" defaultValue="cash">
                 <option value="none">Do not activate (member enters E-Pin later)</option>
-                <option value="cash">Activate now — cash received (invoice + order)</option>
+                <option value="cash">Activate now: cash received (invoice + order)</option>
                 <option value="company">Activate as company ID (no sale, no invoice)</option>
               </select>
             </label>

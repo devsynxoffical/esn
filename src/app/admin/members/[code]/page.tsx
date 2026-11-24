@@ -50,7 +50,7 @@ export default async function MemberDetail({
         title={`${u.name} · ${u.code}`}
         sub={
           <>
-            <Badge>{u.status}</Badge> {u.plan} · Sponsor {u.sponsor_code ?? "—"} · Placed under {u.parent_code ?? "—"}{" "}
+            <Badge>{u.status}</Badge> {u.plan} · Sponsor {u.sponsor_code ?? "None"} · Placed under {u.parent_code ?? "None"}{" "}
             {u.position ? `(${u.position === "L" ? "Left" : "Right"})` : ""}
           </>
         }
@@ -96,7 +96,7 @@ export default async function MemberDetail({
               <select className="inp" name="plan_id" defaultValue={u.plan_id}>
                 {plans.map((p) => (
                   <option key={p.id} value={p.id}>
-                    {p.name} — {money(p.price, cur)}
+                    {p.name} ({money(p.price, cur)})
                   </option>
                 ))}
               </select>
@@ -265,7 +265,7 @@ export default async function MemberDetail({
               </div>
               <div className="flex justify-between">
                 <dt className="text-mute">Sponsor</dt>
-                <dd>{u.sponsor_name ? `${u.sponsor_name} (${u.sponsor_code})` : "—"}</dd>
+                <dd>{u.sponsor_name ? `${u.sponsor_name} (${u.sponsor_code})` : "None"}</dd>
               </div>
             </dl>
           </Card>

@@ -32,7 +32,7 @@ export default async function Epins({ searchParams }: { searchParams: Promise<{ 
               <select className="inp" name="plan_id">
                 {plans.map((p) => (
                   <option key={p.id} value={p.id}>
-                    {p.name} — {money(p.price, s.currency)}
+                    {p.name} ({money(p.price, s.currency)})
                   </option>
                 ))}
               </select>
@@ -89,7 +89,7 @@ export default async function Epins({ searchParams }: { searchParams: Promise<{ 
                   <td>
                     <Badge>{p.status}</Badge>
                   </td>
-                  <td className="font-mono text-mute">{p.used_code ?? "—"}</td>
+                  <td className="font-mono text-mute">{p.used_code ?? "None"}</td>
                   <td className="whitespace-nowrap text-mute">{dt(p.created_at)}</td>
                   <td>{p.status === "unused" && <CopyButton text={p.code} />}</td>
                 </tr>

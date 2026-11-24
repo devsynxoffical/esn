@@ -84,7 +84,7 @@ export const DEFAULT_PRODUCTS = [
 export const DEFAULT_TRAINING = [
   {
     kind: "video",
-    title: "Welcome to ESN — How the business works",
+    title: "Welcome to ESN: How the business works",
     category: "Getting Started",
     url: "https://www.youtube.com/watch?v=REPLACE_ME",
     description: "Replace this link from Admin → Training.",

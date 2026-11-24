@@ -63,7 +63,7 @@ export default async function ProductPage({
             <div className="mt-6 rounded-2xl border border-acc/40 bg-acc/10 p-5">
               <div className="font-bold">Includes a lifetime business ID</div>
               <p className="mt-1 text-sm text-mute">
-                Register, pay at the office, enter your E-Pin and this product is dispatched to you — plus your business
+                Register, pay at the office, enter your E-Pin and this product is dispatched to you, plus your business
                 account, referral links and training academy.
               </p>
               <Link href={`/register?product=${p.id}`} className="btn btn-acc mt-4 w-full py-3 text-base">
@@ -72,7 +72,7 @@ export default async function ProductPage({
             </div>
           ) : (
             <form action={placeOrderAction} className="mt-6 space-y-3 rounded-2xl border border-line bg-panel p-5">
-              <div className="font-bold">Order now — Cash on Delivery</div>
+              <div className="font-bold">Order now: Cash on Delivery</div>
               <input type="hidden" name="slug" value={p.slug} />
               <div className="grid gap-3 sm:grid-cols-2">
                 <input className="inp" name="name" placeholder="Full name" required />

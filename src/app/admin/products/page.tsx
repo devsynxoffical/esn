@@ -116,7 +116,7 @@ export default async function Products({
                     <td className="font-semibold">{p.name}</td>
                     <td>{p.category}</td>
                     <td>{money(p.price, s.currency)}</td>
-                    <td>{p.is_package ? "Yes" : "—"}</td>
+                    <td>{p.is_package ? "Yes" : "No"}</td>
                     <td>{p.active ? <Badge tone="ok">yes</Badge> : <Badge tone="bad">hidden</Badge>}</td>
                     <td>
                       <Link className="text-acc" href={`/admin/products?edit=${p.id}`}>

@@ -18,7 +18,7 @@ export default async function Settings({ searchParams }: { searchParams: Promise
     <>
       <PageHead
         title="Master Settings"
-        sub="Every rule of the system. Changes apply immediately — no code changes needed. Plan prices & commissions are under Plans; rank rewards under Ranks."
+        sub="Every rule of the system. Changes apply immediately, no code changes needed. Plan prices & commissions are under Plans; rank rewards under Ranks."
       />
       <Flash sp={sp} />
       <form action={saveSettingsAction} className="space-y-4">
@@ -68,7 +68,7 @@ export default async function Settings({ searchParams }: { searchParams: Promise
                           />
                         )}
                         <span className="mt-1 block text-[11px] text-mute">
-                          {def.help ? `${def.help} ` : ""}Default: {Array.isArray(dflt) ? dflt.join(", ") : String(dflt) || "—"}
+                          {def.help ? `${def.help} ` : ""}Default: {Array.isArray(dflt) ? dflt.join(", ") : String(dflt) || "empty"}
                         </span>
                       </label>
                     )}

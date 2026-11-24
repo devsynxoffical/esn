@@ -10,7 +10,7 @@ export default async function Activate({ searchParams }: { searchParams: Promise
   const s = await getSettings();
   return (
     <>
-      <PageHead title="Activate your ID" sub={`ID ${me.code} · Plan: ${me.plan_name ?? "—"}`} />
+      <PageHead title="Activate your ID" sub={`ID ${me.code} · Plan: ${me.plan_name ?? "None"}`} />
       <Flash sp={sp} />
       {me.status === "active" ? (
         <Card>

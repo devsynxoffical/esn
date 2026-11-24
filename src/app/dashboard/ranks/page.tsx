@@ -57,7 +57,7 @@ export default async function Ranks({ searchParams }: { searchParams: Promise<{ 
                 {num(r.pairs_required)} : {num(r.pairs_required)} pairs
               </div>
               <div className="mt-2 text-sm">
-                🎁 {r.reward_item || "—"}
+                🎁 {r.reward_item || "Cash reward"}
                 {r.reward_cash > 0 && <span className="text-mute"> or {money(r.reward_cash, cur)}</span>}
               </div>
               {r.daily_cap_pairs != null && (

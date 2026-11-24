@@ -18,7 +18,7 @@ export const DEFAULTS = {
   // Company / website
   site_name: "Elite Sales Network",
   site_short: "ESN",
-  site_tagline: "Original Handsfree & Smart Watches — Delivered Across Pakistan",
+  site_tagline: "Original Handsfree & Smart Watches, Delivered Across Pakistan",
   site_domain: "elitesalesnetwork.com",
   currency: "Rs.",
   support_phone: "+92 300 0000000",
@@ -91,8 +91,8 @@ export const SETTING_DEFS: Record<SettingKey, SettingDef> = {
     group: "Registration & Placement",
     type: "select",
     options: [
-      { value: "extreme", label: "Extreme — last empty spot at the outer edge of the chosen leg" },
-      { value: "balanced", label: "Balanced — first empty spot level by level in the chosen leg" },
+      { value: "extreme", label: "Extreme: last empty spot at the outer edge of the chosen leg" },
+      { value: "balanced", label: "Balanced: first empty spot level by level in the chosen leg" },
     ],
   },
   unique_cnic: { label: "One CNIC = one account", group: "Registration & Placement", type: "bool" },
@@ -126,8 +126,8 @@ export const SETTING_DEFS: Record<SettingKey, SettingDef> = {
     group: "Binary Commission Engine",
     type: "select",
     options: [
-      { value: "fresh", label: "Fresh pairs — each rank counts new pairs after the previous rank" },
-      { value: "cumulative", label: "Cumulative — total matched pairs since joining" },
+      { value: "fresh", label: "Fresh pairs: each rank counts new pairs after the previous rank" },
+      { value: "cumulative", label: "Cumulative: total matched pairs since joining" },
     ],
   },
   normalization_enabled: {

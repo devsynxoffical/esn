@@ -54,7 +54,7 @@ export default async function Ledger({ searchParams }: { searchParams: Promise<{
                 <tr key={r.id}>
                   <td className="whitespace-nowrap text-mute">{dt(r.created_at)}</td>
                   <td>{KINDS[r.kind] ?? r.kind}</td>
-                  <td className="font-mono text-xs">{r.code ?? "—"}</td>
+                  <td className="font-mono text-xs">{r.code ?? "None"}</td>
                   <td className="text-mute">{r.note}</td>
                   <td className="font-bold text-ok">{money(r.amount, s.currency)}</td>
                 </tr>
